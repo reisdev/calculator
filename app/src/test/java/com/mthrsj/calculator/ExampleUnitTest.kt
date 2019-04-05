@@ -1,4 +1,4 @@
-package com.matheus.calculator
+package com.mthrsj.calculator
 
 import org.junit.Test
 

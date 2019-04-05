@@ -1,55 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".MainActivity"
+>
+	<TextView
+			android:id="@+id/text1"
+			android:labelFor="@+id/input1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentTop="true"
+			android:layout_marginTop="50dp"
+			android:layout_alignStart="@id/input1"
+			android:textSize="20dp"
+			android:textAlignment="viewStart"
+			android:text="@string/value_1"
+	/>
+	<EditText
+			android:inputType="number"
+			android:id="@+id/input1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="20dp"
+			android:layout_below="@id/text1"
+			android:ems="15"
+	/>
 
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.matheus.calculator.MainActivity"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="0dp">
+	<TextView
+			android:id="@+id/text2"
+			android:labelFor="@+id/input2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="50dp"
+			android:layout_below="@id/input1"
+			android:layout_alignStart="@id/input1"
+			android:textSize="20dp"
+			android:text="@string/value_2"
+	/>
 
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:visibility="visible" />
+	<EditText
+			android:inputType="number"
+			android:id="@+id/input2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="20dp"
+			android:layout_below="@id/text2"
+			android:ems="15"
+	/>
 
-    <EditText
-        android:id="@+id/valueInput1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/valueInput1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:visibility="visible" />
-
-    <EditText
-        android:id="@+id/valueInput2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="155dp"
-        android:ems="10"
-        android:inputType="textPersonName" />
+	<Button
+			android:id="@+id/plusButton"
+			android:layout_width="70dp"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/input2"
+			android:layout_alignStart="@id/input2"
+			android:layout_marginTop="40dp"
+			android:text="+"
+	/>
+	<Button
+			android:id="@+id/minusButton"
+			android:layout_width="70dp"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/input2"
+			android:layout_toRightOf="@id/plusButton"
+			android:layout_marginTop="40dp"
+			android:text="-"
+	/>
+	<Button
+			android:id="@+id/multiplyButton"
+			android:layout_width="70dp"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/input2"
+			android:layout_toLeftOf="@id/divideButton"
+			android:layout_marginTop="40dp"
+			android:text="*"
+	/>
+	<Button
+			android:id="@+id/divideButton"
+			android:layout_width="70dp"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/input2"
+			android:layout_alignEnd="@id/input2"
+			android:layout_marginTop="40dp"
+			android:text="/"
+	/>
+	<TextView
+			android:id="@+id/resultIs"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:layout_centerHorizontal="true"
+			android:layout_marginBottom="100dp"
+			android:textSize="30dp"
+			android:text="@string/resultIs"
+	/>
+	<TextView
+			android:id="@+id/resultText"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:layout_marginBottom="40dp"
+			android:textSize="25dp"
+			android:layout_centerHorizontal="true"
+	/>
 
 </RelativeLayout>

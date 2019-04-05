@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Calculadora</string>
+	<string name="value_1">Valor 1</string>
+	<string name="value_2">Valor 2</string>
+	<string name="resultIs">O resultado é:</string>
+</resources>

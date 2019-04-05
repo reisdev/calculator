@@ -1,4 +1,4 @@
-package com.matheus.calculator
+package com.mthrsj.calculator
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.matheus.calculator", appContext.packageName)
+        assertEquals("com.mthrsj.calculator", appContext.packageName)
     }
 }

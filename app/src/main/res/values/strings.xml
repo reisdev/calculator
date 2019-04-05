@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Calculator</string>
-    <string name="value1">Valor 1</string>
-    <string name="value2">Valor 2</string>
-    <string name="desiredValue">Insira o valor desejado</string>
+	<string name="app_name">Calculator</string>
+	<string name="value_1">Value 1</string>
+	<string name="value_2">Value 2</string>
+	<string name="resultIs">The result is:</string>
 </resources>
