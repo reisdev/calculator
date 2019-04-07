@@ -4,4 +4,6 @@
 	<string name="value_1">Value 1</string>
 	<string name="value_2">Value 2</string>
 	<string name="resultIs">The result is:</string>
+	<string name="backspace"> &lt;&lt; </string>
+	<string name="zeroDivision">Not possible to divide by zero</string>
 </resources>

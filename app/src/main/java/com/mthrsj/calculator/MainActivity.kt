@@ -2,7 +2,6 @@ package com.mthrsj.calculator
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -12,28 +11,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        plusButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                operation("plus")
-            }
-        })
-        minusButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                operation("minus")
-            }
-        })
-        divideButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                operation("divide")
-            }
-        })
-        multiplyButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                operation("multiply")
-            }
-        })
+        plusButton.setOnClickListener { operation("plus") }
+        minusButton.setOnClickListener { operation("minus") }
+        divideButton.setOnClickListener { operation("divide") }
+        multiplyButton.setOnClickListener { operation("multiply") }
     }
-
     private fun operation(type: String) {
         val value1 = input1.text.toString().toDouble()
         val value2 = input2.text.toString().toDouble()
