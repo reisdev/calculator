@@ -18,6 +18,10 @@
 				android:layout_height="wrap_content"
 				android:ems="15"
 				android:inputType="none"
+				android:clickable="false"
+				android:cursorVisible="false"
+				android:focusable="false"
+				android:focusableInTouchMode="false"
 				/>
 	</RelativeLayout>
 	<RelativeLayout

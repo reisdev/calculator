@@ -38,7 +38,7 @@ class ComplexCalculator : AppCompatActivity() {
     private fun addOperation(v: View) {
         var op = v.tag.toString()
         try {
-            var last = operations[operations.size-1].toDouble()
+            operations[operations.size-1].toDouble()
             Log.d("OPER", "$op added to operations")
             when (op) {
                 "plus" -> operations.add("+")
@@ -72,20 +72,21 @@ class ComplexCalculator : AppCompatActivity() {
     }
 
     private fun deleteLast() {
-        try {
-            var string = operations[operations.size - 1]
-            var number = string.toDouble()
-            Log.d("DEB","String length=${string.length}")
-            if (string.length > 3) {
-                var result = string.dropLast(3)
-                operations[operations.size - 1] = result.toDouble().toString()
-            } else {
+        if(operations.size > 0) {
+            try {
+                var string = operations[operations.size - 1]
+                Log.d("DEB", "String length=${string.length}")
+                if (string.length > 3) {
+                    var result = string.dropLast(3)
+                    operations[operations.size - 1] = result.toDouble().toString()
+                } else {
+                    operations.removeAt(operations.size - 1)
+                }
+            } catch (e: NumberFormatException) {
                 operations.removeAt(operations.size - 1)
             }
-        } catch (e: NumberFormatException) {
-            operations.removeAt(operations.size - 1)
+            formatInput()
         }
-        formatInput()
     }
 
     private fun clearInput() {
