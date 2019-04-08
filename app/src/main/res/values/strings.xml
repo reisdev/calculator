@@ -6,4 +6,6 @@
 	<string name="resultIs">The result is:</string>
 	<string name="backspace"> &lt;&lt; </string>
 	<string name="zeroDivision">Not possible to divide by zero</string>
+	<string name="basic">Basic</string>
+	<string name="complex">Complex</string>
 </resources>

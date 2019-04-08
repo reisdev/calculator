@@ -3,7 +3,11 @@ package com.mthrsj.calculator
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.content.Intent
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_complex_calculator.*
 
 class ComplexCalculator : AppCompatActivity() {
@@ -12,6 +16,9 @@ class ComplexCalculator : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_complex_calculator)
+
+        var toolbar: Toolbar = findViewById(toolbar.id)
+        setSupportActionBar(toolbar)
 
         // Setting operation listeners
         plusButtonComplex.setOnClickListener { view -> addOperation(view) }
@@ -35,6 +42,37 @@ class ComplexCalculator : AppCompatActivity() {
         button9.setOnClickListener { view -> addNum(view) }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu,menu)
+        return true
+    }
+
+    private fun navigateComplex() {
+        var it = Intent(this, ComplexCalculator::class.java)
+        startActivity(it)
+    }
+
+    private fun navigateBasic() {
+        var it = Intent(this, BasicCalculator::class.java)
+        startActivity(it)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.title) {
+        "Basic" -> {
+            navigateBasic()
+            true
+        }
+
+        "Complex" -> {
+            false
+        }
+
+        else -> {
+            // If we got here, the user's action was not recognized.
+            // Invoke the superclass to handle it.
+            super.onOptionsItemSelected(item)
+        }
+    }
     private fun addOperation(v: View) {
         var op = v.tag.toString()
         try {
@@ -56,7 +94,6 @@ class ComplexCalculator : AppCompatActivity() {
         var tag = v.tag.toString()
         var number = tag[tag.length - 1].toString().toDouble()
         Log.d("OPER", "button$number got clicked")
-
         try {
             if (operations.isNotEmpty()) {
                 var lastItem = operations[operations.size - 1].toDouble()
