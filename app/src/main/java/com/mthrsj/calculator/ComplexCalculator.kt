@@ -73,15 +73,17 @@ class ComplexCalculator : AppCompatActivity() {
     private fun addOperation(v: View) {
         var op = v.tag.toString()
         try {
-            operations[operations.size - 1].toDouble()
-            Log.d("OPER", "$op added to operations")
-            when (op) {
-                "plus" -> operations.add("+")
-                "minus" -> operations.add("-")
-                "divide" -> operations.add("/")
-                "multiply" -> operations.add("x")
+            if(operations.isNotEmpty()) {
+                operations[operations.size - 1].toDouble()
+                Log.d("OPER", "$op added to operations")
+                when (op) {
+                    "plus" -> operations.add("+")
+                    "minus" -> operations.add("-")
+                    "divide" -> operations.add("/")
+                    "multiply" -> operations.add("x")
+                }
+                formatInput()
             }
-            formatInput()
         } catch (e: NumberFormatException) {
 
         }
