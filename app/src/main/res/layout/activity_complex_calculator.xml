@@ -161,6 +161,7 @@
 			android:layout_marginTop="-60dp">
 		<Button
 				android:id="@+id/button0"
+				android:tag="button0"
 				android:layout_height="60dp"
 				android:layout_width="120dp"
 				android:text="0"/>

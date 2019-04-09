@@ -1,11 +1,11 @@
 package com.mthrsj.calculator
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_basic_calculator.*
 
@@ -25,7 +25,7 @@ class BasicCalculator : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu,menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
@@ -43,12 +43,10 @@ class BasicCalculator : AppCompatActivity() {
         "Basic" -> {
             false
         }
-
         "Complex" -> {
             navigateComplex()
             true
         }
-
         else -> {
             // If we got here, the user's action was not recognized.
             // Invoke the superclass to handle it.
@@ -57,9 +55,14 @@ class BasicCalculator : AppCompatActivity() {
     }
 
     private fun operation(type: String) {
-        val value1 = input1.text.toString().toDouble()
-        val value2 = input2.text.toString().toDouble()
-        calculate(type, value1, value2)
+        try {
+            val value1 = input1.text.toString().toDouble()
+            val value2 = input2.text.toString().toDouble()
+            calculate(type, value1, value2)
+        }
+        catch(e: NumberFormatException){
+
+        }
     }
 
     private fun calculate(type: String, value1: Double, value2: Double) {

@@ -1,11 +1,11 @@
 package com.mthrsj.calculator
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_complex_calculator.*
@@ -25,6 +25,7 @@ class ComplexCalculator : AppCompatActivity() {
         minusButtonComplex.setOnClickListener { view -> addOperation(view) }
         divideButtonComplex.setOnClickListener { view -> addOperation(view) }
         multiplyButtonComplex.setOnClickListener { view -> addOperation(view) }
+        dotButton.setOnClickListener { addDot() }
         clearButton.setOnClickListener { clearInput() }
         deleteButton.setOnClickListener { deleteLast() }
         equalButton.setOnClickListener { result() }
@@ -43,13 +44,8 @@ class ComplexCalculator : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu,menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         return true
-    }
-
-    private fun navigateComplex() {
-        var it = Intent(this, ComplexCalculator::class.java)
-        startActivity(it)
     }
 
     private fun navigateBasic() {
@@ -73,10 +69,11 @@ class ComplexCalculator : AppCompatActivity() {
             super.onOptionsItemSelected(item)
         }
     }
+
     private fun addOperation(v: View) {
         var op = v.tag.toString()
         try {
-            operations[operations.size-1].toDouble()
+            operations[operations.size - 1].toDouble()
             Log.d("OPER", "$op added to operations")
             when (op) {
                 "plus" -> operations.add("+")
@@ -85,37 +82,69 @@ class ComplexCalculator : AppCompatActivity() {
                 "multiply" -> operations.add("x")
             }
             formatInput()
-        }catch(e: NumberFormatException){
+        } catch (e: NumberFormatException) {
 
         }
     }
 
     private fun addNum(v: View) {
         var tag = v.tag.toString()
-        var number = tag[tag.length - 1].toString().toDouble()
+        var number = tag[tag.length - 1].toString()
         Log.d("OPER", "button$number got clicked")
         try {
             if (operations.isNotEmpty()) {
-                var lastItem = operations[operations.size - 1].toDouble()
-                lastItem = (lastItem * 10) + number
-                operations[operations.size - 1] = lastItem.toString()
+                var lastItem = operations[operations.size - 1]
+                if (lastItem.indexOf(".") != -1) {
+                    operations[operations.size - 1] = "$lastItem$number"
+                    formatInput()
+                    return
+                } else {
+                    lastItem.toDouble()
+                    operations[operations.size - 1] = "$lastItem$number"
+                    formatInput()
+                    return
+                }
             } else {
-                operations.add(number.toString())
+                if(number == "0")
+                    operations.add("0.")
+                else operations.add(number)
             }
         } catch (e: NumberFormatException) {
-            operations.add(number.toString())
+            if(number == "0")
+                operations.add("0.")
+            else operations.add(number)
+        }
+        formatInput()
+    }
+
+    private fun addDot() {
+        var size = operations.size
+        if (size > 0) {
+            var last = operations[size - 1]
+            if (last.indexOf(".") != -1) {
+                // Nothing should be done
+            } else {
+                try {
+                    last.toDouble()
+                    operations[size - 1] = "$last."
+                } catch (e: NumberFormatException) {
+                    operations.add("0.")
+                }
+            }
+        } else {
+            operations.add("0.")
         }
         formatInput()
     }
 
     private fun deleteLast() {
-        if(operations.size > 0) {
+        if (operations.size > 0) {
             try {
                 var string = operations[operations.size - 1]
                 Log.d("DEB", "String length=${string.length}")
-                if (string.length > 3) {
-                    var result = string.dropLast(3)
-                    operations[operations.size - 1] = result.toDouble().toString()
+                if (string.indexOf(".") != -1) {
+                    var result = string.dropLast(1)
+                    operations[operations.size - 1] = result
                 } else {
                     operations.removeAt(operations.size - 1)
                 }
@@ -146,6 +175,7 @@ class ComplexCalculator : AppCompatActivity() {
         var op = ""
         for (item in operations) {
             try {
+                Log.d("CALC", "Actual item: $item")
                 var value = item.toDouble()
                 if (last != -1.0) {
                     try {
@@ -156,6 +186,7 @@ class ComplexCalculator : AppCompatActivity() {
                             "/" -> result = last / value
                             "x" -> result = last * value
                         }
+                        Log.d("CALC", "Result is: $result ")
                         last = result
                     } catch (e: ArithmeticException) {
                         text_input_error.setText(R.string.zeroDivision)
